@@ -27,8 +27,40 @@ services:
       - POSTGRES_PASSWORD=django_password
       - POSTGRES_DB=django_db
 
+  redis:
+    image: redis:7.0.5-alpine
+    hostname: redis
+
+  celery:
+    build: ./my_app  
+    container_name: celery
+    env_file: 
+      - ./.env.dev
+    depends_on:
+      - web
+      - redis
+    command: celery -A celery_app worker --loglevel=info  
+    restart: always
+
+  flower:
+    build: ./my_app
+    hostname: flower
+    env_file:
+      - ./.env.dev
+    command: celery -A celery_app flower 
+    volumes:
+      - ./my_app:/my_app
+    links:
+      - redis
+    depends_on:
+      - redis
+    ports:
+      - "5555:5555"
+
 
 
 
 volumes:
   postgres_volume:
+  #static_volume:
+  #media_volume:

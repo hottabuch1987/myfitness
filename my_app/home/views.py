@@ -1,15 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
-
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from .models import Product, Category, Feedback
 from django.shortcuts import get_object_or_404
-
 from .forms import ContactForm
 from .utils import DataMixin
 from django.db.models import Q
-
+from .tasks import send_contact_email
 
 
 class HomePage(ListView):
@@ -55,12 +51,19 @@ class Contact(DataMixin, CreateView):
         context['product_name'] = product.name 
         return context
 
-
     def form_valid(self, form):
-
         # Получаем slug из скрытого поля
         product_slug = self.request.POST.get('product_slug')
         form.instance.product = get_object_or_404(Product, slug=product_slug)  # Привязываем товар
+        # Отправка email через Celery
+        email_subject = 'Здравствуйте! Вы оформили заказ на сайте Online Fitness'
+        email_body = f'После оплаты программы Вам придут файлы. Ваш заказ : {form.instance.product.name}.'
+        user_email = form.cleaned_data.get('email_contact')  # Получаем email пользователя из формы
+        # Запускаем задачу отправки email
+        print(email_subject, email_body, user_email)
+        send_contact_email.delay(email_subject, email_body, user_email)
+
+
         return super().form_valid(form)
 
 
