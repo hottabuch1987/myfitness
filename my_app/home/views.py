@@ -36,7 +36,7 @@ class Products(DataMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Onlain Fitness')
+        c_def = self.get_user_context(title='Программы')
         context = dict(list(context.items()) + list(c_def.items()))
         return context
 
@@ -48,24 +48,19 @@ class Contact(DataMixin, CreateView):
     success_url = reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
-
         context = super().get_context_data(**kwargs)
-
         product_slug = self.kwargs.get('product_slug')
-
+        product = get_object_or_404(Product, slug=product_slug)
         context['product_slug'] = product_slug  # Передаем slug продукта в контекст
-
+        context['product_name'] = product.name 
         return context
 
 
     def form_valid(self, form):
 
         # Получаем slug из скрытого поля
-
         product_slug = self.request.POST.get('product_slug')
-
         form.instance.product = get_object_or_404(Product, slug=product_slug)  # Привязываем товар
-
         return super().form_valid(form)
 
 
