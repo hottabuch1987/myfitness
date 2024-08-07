@@ -1,0 +1,136 @@
+{% extends 'my_app/base.html' %}
+
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+     <!-- CLASS -->
+     <section class="class section" id="class">
+        <div class="container">
+             <div class="row">
+
+                     <div class="col-lg-12 col-12 text-center mb-5">
+                         <h6 data-aos="fade-up">Get A Perfect Body</h6>
+
+                         <h2 data-aos="fade-up" data-aos-delay="200">Our Training Classes</h2>
+                      </div>
+
+                     <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
+                         <div class="class-thumb">
+                             <img src="images/class/yoga-class.jpg" class="img-fluid" alt="Class">
+
+                             <div class="class-info">
+                                 <h3 class="mb-1">Yoga</h3>
+
+                                 <span><strong>Trained by</strong> - Bella</span>
+
+                                 <span class="class-price">$50</span>
+
+                                 <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
+                         <div class="class-thumb">
+                             <img src="images/class/crossfit-class.jpg" class="img-fluid" alt="Class">
+
+                             <div class="class-info">
+                                 <h3 class="mb-1">Areobic</h3>
+
+                                 <span><strong>Trained by</strong> - Mary</span>
+
+                                 <span class="class-price">$66</span>
+
+                                 <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
+                         <div class="class-thumb">
+                             <img src="images/class/cardio-class.jpg" class="img-fluid" alt="Class">
+
+                             <div class="class-info">
+                                 <h3 class="mb-1">Cardio</h3>
+
+                                 <span><strong>Trained by</strong> - Cathe</span>
+
+                                 <span class="class-price">$75</span>
+
+                                 <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+                             </div>
+                         </div>
+                     </div>
+
+             </div>
+        </div>
+</section>
+    {% comment %} <header class="site-header-2 d-flex justify-content-center align-items-center">
+       
+    </header>
+
+    <section class="shop-section section-padding">
+        <div class="container">
+
+            <div class="row">
+                {% for p in products %}
+                    <div class="col-lg-6 col-12">
+                        <div class="shop-thumb">
+                            <small class="section-small-title">Категория: {{ p.category }} </small>
+                            <div class="shop-image-wrap">
+                                <img src="{{ p.image.url }}" class="shop-image img-thumbnail" style="width: 19rem; height: 28rem;"  alt="">
+                                <div class="shop-icons-wrap">
+                                    <p class="shop-pricing mb-0 mt-3">
+                                        <span class="badge custom-badge">{{ p.price }}</span>
+                                    </p>
+                                </div>
+                                <div class="shop-btn-wrap">
+                                    <a href="{{ p.get_absolute_url }}" class="shop-btn custom-btn btn d-flex align-items-center align-items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="shop-body">
+                                <h5>{{ p.name }}</h5>
+                                {% autoescape on %}
+                                    <p class="mb-2">{{ p.description|linebreaks|truncatewords:20 }}</p>
+                                {% endautoescape %}
+                                <p class="mb-2"><a class="custom-link mb-1" href="{{ p.get_absolute_url }}">Подробнее</a></p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                 <ul class="pagination">
+                                            {% if page_obj.has_previuos %}
+                                            <li class="page-item">
+                                              <a class="page-link" href="?page={{page_obj.previos_page_number}}">&lt;</a>
+                                            </li>
+                                            {% endif %}
+
+                                            {% for p in paginator.page_range %}
+                                            {% if page_obj.number == p %}
+                                            <li class="page-item active">
+                                              <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                            </li>
+                                            {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 %}
+                                            <li class="page-item">
+                                              <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                                            </li>
+                                            {% endif %}
+                                            {% endfor %}
+
+                                            {% if page_obj.has_next %}
+                                            <li class="page-item">
+                                              <a class="page-link" href="?page={{page_obj.next_page_number}}">&gt;</a>
+                                            </li>
+                                            {% endif %}
+                                        </ul>
+            </div>
+
+        </div>
+    </section> {% endcomment %}
+{% endblock %}

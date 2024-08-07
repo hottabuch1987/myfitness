@@ -1,0 +1,14 @@
+asgiref==3.7.2
+Django==3.2.16
+django-recaptcha==3.0.0
+Pillow==10.0.0
+sqlparse==0.4.4
+psycopg2-binary==2.8.6
+gunicorn==21.2.0
+
+flower==1.2.0
+unidecode
+
+
+
+

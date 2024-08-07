@@ -1,0 +1,67 @@
+{% load static %}
+{% load home_tags %}
+{% load cache %}
+{% comment %} <nav class="navbar navbar-expand-lg bg-light fixed-top shadow-lg">
+     <div class="container">
+        <h1 class="navbar-brand  "><span class="construct__label">Строй</span><span class="tooplate-red">Континент</span></h1>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item {% if active_nav == '/' %}active{% endif %}">
+                    <a class="nav-link click-scroll" href="{% url 'index' %}" >Главная</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle click-scroll" href="{% url 'products'  %}" id="navbarLightDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Категория</a>
+                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
+                        {% show_categories  '-name' %}
+                    </ul>
+                </li>
+                 <li class="nav-item {% if active_nav == '/cart/' %}active{% endif %}">
+                    <a class="nav-link click-scroll" href="{% url 'cart' %}" >Избранное</a>
+                </li>
+                <li class="nav-item {% if active_nav == '/contact/' %}active{% endif %}">
+                    <a class="nav-link click-scroll" href="{% url 'contact' %}" >Связаться</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+</nav> {% endcomment %}
+
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+        <a class="navbar-brand" href="{% url 'index' %}">Online Fitness</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-lg-auto">
+                <li class="nav-item {% if active_nav == '/' %}active{% endif %}">
+                    <a href="{% url 'index' %}" class="nav-link smoothScroll">Главная</a>
+                </li>
+
+                <li class="nav-item" {% if active_nav == '/contact/' %}active{% endif %}>
+                    <a href="{% url 'contact' %}" class="nav-link smoothScroll">О нас</a>
+                </li>
+
+                <li class="nav-item" {% if active_nav == '/products/' %}active{% endif %}>
+                    <a href="{% url 'products' %}" class="nav-link smoothScroll">Программы</a>
+                </li>
+
+            </ul>
+            <ul class="social-icon ml-lg-3">
+                <li><a href="tg://resolve?domain=hottabuch_87" class="fa fa-telegram"></a></li>
+                <li><a href="#" class="fa fa-instagram"></a></li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

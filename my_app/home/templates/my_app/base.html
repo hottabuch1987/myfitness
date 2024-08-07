@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Онлайн тренировки для развития силы, набора массы и похудения.">
+    <meta name="keywords" content="онлайн тренировки, нлайн программы, спортивные тренировки, програмы онлайн тренировок">
+    <meta name="author" content="Онлайн Фитнесс">
+
+    <title>{% block title %}{% endblock %} | Онлайн тренировки</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="{% static 'css/tooplate-gymso-style.css' %}">
+         <!-- SCRIPTS -->
+         <script src="{% static 'js/jquery.min.js' %}"></script>
+         <script src="{% static 'js/bootstrap.min.js' %}"></script>
+         <script src="{% static 'js/aos.js' %}"></script>
+         <script src="{% static 'js/smoothscroll.js' %}"></script>
+         <script src="{% static 'js/custom.js' %}"></script>
+    {% comment %} <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;300;400;600;700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'css/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/tooplate-moso-interior.css' %}" rel="stylesheet">
+    <!-- JAVASCRIPT FILES -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link type="image/x-icon" href="/static/favicon.ico" rel="icon">
+    <script src="{% static 'js/custom.js' %}"></script> {% endcomment %}
+</head>
+<body>
+<div>
+{% include 'my_app/include/navbar.html' %}
+
+{% block content %}
+{% endblock content %}
+
+
+
+
+{% include 'my_app/include/footer.html' %}
+
+</div>
+</body>
+
+</html>
+
+
+
+
+
+
