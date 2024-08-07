@@ -29,7 +29,7 @@ jobs:
             cd /root/myfitness/
            
             
-            git pull origin main || echo "Ошибка при выполнении git pull
+            git pull origin main || echo "Ошибка при выполнении git pull"
 
             
             docker-compose -f docker-compose.prod.yml down
