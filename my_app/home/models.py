@@ -38,7 +38,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=100, unique=True, db_index=True, verbose_name='слаг')
     description = models.TextField(blank=True, null=True, verbose_name='описание')
     price = models.DecimalField(max_digits=8, decimal_places=2, verbose_name='цена', blank=True, null=True,)
-    image = models.ImageField(upload_to='product/%Y/%m/%d/',  verbose_name='фото', blank=True, null=True,)
+    image = models.ImageField(upload_to='product/%Y/%m/%d/', verbose_name='фото', blank=True, null=True,)
     thumbnail = models.ImageField(upload_to='uploads/',  verbose_name='миниатюра', blank=True, null=True,)
     date_added = models.DateTimeField(auto_now_add=True, verbose_name='дата добавления', blank=True, null=True,)
     set_products = models.CharField('Комплектация', max_length=100, default='Полная',  blank=True, null=True,)
