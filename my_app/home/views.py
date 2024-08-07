@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from .models import Product, Category, Feedback
@@ -60,8 +61,8 @@ class Contact(DataMixin, CreateView):
         email_body = f'После оплаты программы Вам придут файлы. Ваш заказ : {form.instance.product.name}.'
         user_email = form.cleaned_data.get('email_contact')  # Получаем email пользователя из формы
         # Запускаем задачу отправки email
-        print(email_subject, email_body, user_email)
         send_contact_email.delay(email_subject, email_body, user_email)
+        messages.success(self.request, 'Ваш заказ успешно оформлен! Проверьте ваш email для дальнейших инструкций.')
 
 
         return super().form_valid(form)
