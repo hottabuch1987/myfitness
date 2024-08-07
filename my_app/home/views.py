@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from .models import Product, Category, Feedback
+from django.shortcuts import get_object_or_404
 
 from .forms import ContactForm
 from .utils import DataMixin
@@ -46,11 +47,26 @@ class Contact(DataMixin, CreateView):
     template_name = 'my_app/fitnes/contact.html'
     success_url = reverse_lazy('index')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, **kwargs):
+
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Консультация')
-        context = dict(list(context.items()) + list(c_def.items()))
+
+        product_slug = self.kwargs.get('product_slug')
+
+        context['product_slug'] = product_slug  # Передаем slug продукта в контекст
+
         return context
+
+
+    def form_valid(self, form):
+
+        # Получаем slug из скрытого поля
+
+        product_slug = self.request.POST.get('product_slug')
+
+        form.instance.product = get_object_or_404(Product, slug=product_slug)  # Привязываем товар
+
+        return super().form_valid(form)
 
 
 class ShowProduct(DataMixin, DetailView):

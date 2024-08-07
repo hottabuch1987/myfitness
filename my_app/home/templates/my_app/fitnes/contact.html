@@ -13,10 +13,13 @@
                    <h2 data-aos="fade-up" data-aos-delay="200">Оформление заказа</h2>
 
               </div>
-              <form class="membership-form webform col-lg-6 col-12" role="form">
-                <input type="text" class="form-control mb-3" name="cf-name" placeholder="Имя">
+              <form method="post" action="." class="membership-form webform col-lg-6 col-12" role="form">
+                {% csrf_token %}
+              
+                <input type="hidden" name="product_slug" value="{{ product_slug }}"> 
+                <input type="text" class="form-control mb-3" name="firstname_contact" id="firstname_contact" placeholder="Имя" required>
             
-                <input type="email" class="form-control mb-3" name="cf-email" placeholder="exemple@mail.ru">
+                <input type="email" class="form-control mb-3" id="email_contact" name="email_contact"  placeholder="exemple@mail.ru" required>
             
                 
                 <button type="submit"  id="submit-button" name="submit">Отправить</button>
