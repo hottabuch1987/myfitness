@@ -12,6 +12,23 @@
 
                      <div class="col-lg-8 col-md-10 mx-auto col-12">
                           <div class="hero-text mt-5 text-center">
+                                   {% if messages %}
+                                        {% for message in messages %}
+                                             <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                                        {% endfor %}
+                                   {% endif %}
+                                   <script>
+                                        document.addEventListener('DOMContentLoaded', function() {
+                                        setTimeout(function(){
+                                        var messages = document.getElementsByClassName('alert');
+                                        for (var i = 0; i < messages.length; i++){
+                                             messages[i].style.display = 'none';
+                                        }
+                                        }, 3000);  // Delay in milliseconds (3 seconds)
+                                   
+                                        });
+                                   
+                                   </script>
 
                                 <h6 data-aos="fade-up" data-aos-delay="300">Выберите направление которое подходит вам!</h6>
 
