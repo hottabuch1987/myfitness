@@ -160,7 +160,6 @@ logs
 
 .env.prod
 
-staticfiles
 shablon
 shablon/
 domain.key
